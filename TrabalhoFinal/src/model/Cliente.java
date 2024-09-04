@@ -12,16 +12,6 @@ public class Cliente {
     private String cepCliente;
     private Date nascimentoCliente;
 
-    public Cliente(Integer codCliente, String nomeCliente, String rgCliente, String bairroCliente, String cidadeCliente, String cepCliente, Date nascimentoCliente) {
-        this.codCliente = codCliente;
-        this.nomeCliente = nomeCliente;
-        this.rgCliente = rgCliente;
-        this.bairroCliente = bairroCliente;
-        this.cidadeCliente = cidadeCliente;
-        this.cepCliente = cepCliente;
-        this.nascimentoCliente = nascimentoCliente;
-    }
-
     public Integer getCodCliente() {
         return codCliente;
     }
