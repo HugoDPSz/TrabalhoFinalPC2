@@ -7,16 +7,6 @@ public class Chale {
 	private Double valorAltaEstacao;
 	private Double valorBaixaEstacao;
 
-	public Chale(Integer codChale, String localizacao, Integer capacidade, Double valorAltaEstacao,
-			Double valorBaixaEstacao) {
-		super();
-		this.codChale = codChale;
-		this.localizacao = localizacao;
-		this.capacidade = capacidade;
-		this.valorAltaEstacao = valorAltaEstacao;
-		this.valorBaixaEstacao = valorBaixaEstacao;
-	}
-
 	public Integer getCodChale() {
 		return codChale;
 	}

@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Hospedagem {
 	private Integer codHospedagem;
 	private Integer codChale;
+	private Integer codCliente;
 	private String estado;
 	private Date dataInicio;
 	private Date dataFim;
@@ -26,6 +27,14 @@ public class Hospedagem {
 
 	public void setCodChale(Integer codChale) {
 		this.codChale = codChale;
+	}
+	
+	public Integer getCodCliente() {
+		return codCliente;
+	}
+
+	public void setCodCliente(Integer codCliente) {
+		this.codCliente = codCliente;
 	}
 
 	public String getEstado() {
