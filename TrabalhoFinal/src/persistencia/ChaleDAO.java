@@ -8,5 +8,5 @@ public interface ChaleDAO {
 	public String alterar(Chale cha);
 	public String excluir(Chale cha);
 	public List<Chale> listarTodos();
-	public Chale pesquisarPorCod(Integer cod);
+	public Chale pesquisarPorCod(Integer codChale);
 }

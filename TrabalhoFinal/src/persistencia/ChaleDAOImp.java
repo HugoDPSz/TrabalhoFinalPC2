@@ -109,12 +109,12 @@ public class ChaleDAOImp implements ChaleDAO {
 	}
 
 	@Override
-	public Chale pesquisarPorCod(Integer cod) {
+	public Chale pesquisarPorCod(Integer codChale) {
 		String sql = "select * from Hospedagem where codHospedagem=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, cod);
+			pst.setInt(1, codChale);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				Chale cha = new Chale();

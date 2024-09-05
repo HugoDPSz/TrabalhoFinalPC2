@@ -12,6 +12,7 @@ public class Cliente {
     private String cepCliente;
     private Date nascimentoCliente;
 
+
     public Integer getCodCliente() {
         return codCliente;
     }

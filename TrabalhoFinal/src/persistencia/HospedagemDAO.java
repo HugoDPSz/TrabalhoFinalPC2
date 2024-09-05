@@ -8,5 +8,5 @@ public interface HospedagemDAO {
 	public String alterar(Hospedagem hos);
 	public String excluir(Hospedagem hos);
 	public List<Hospedagem> listarTodos();
-	public Hospedagem pesquisarPorCod(Integer cod);
+	public Hospedagem pesquisarPorCod(Integer Hospedagem);
 }

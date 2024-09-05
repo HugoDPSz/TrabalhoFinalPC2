@@ -117,12 +117,12 @@ public class ClienteDAOImp implements ClienteDAO {
 	}
 
 	@Override
-	public Cliente pesquisarPorCod(Integer cod) {
+	public Cliente pesquisarPorCod(Integer codCliente) {
 		String sql = "select * from Cliente where codCliente=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, cod);
+			pst.setInt(1, codCliente);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				Cliente cli = new Cliente();

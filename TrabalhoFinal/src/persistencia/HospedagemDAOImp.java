@@ -120,12 +120,12 @@ public class HospedagemDAOImp implements HospedagemDAO {
 	}
 
 	@Override
-	public Hospedagem pesquisarPorCod(Integer cod) {
+	public Hospedagem pesquisarPorCod(Integer Hospedagem) {
 		String sql = "select * from Hospedagem where codHospedagem=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, cod);
+			pst.setInt(1, Hospedagem);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				Hospedagem hos = new Hospedagem();
