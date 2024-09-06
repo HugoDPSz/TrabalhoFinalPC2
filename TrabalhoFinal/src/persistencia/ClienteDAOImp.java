@@ -10,10 +10,10 @@ import java.util.List;
 import model.Cliente;
 
 public class ClienteDAOImp implements ClienteDAO {
-	
+
 	@Override
 	public String inserir(Cliente cli) {
-		String sql = "insert into Hospedagem(codCliente,nomeCliente,rgCliente,bairroCliente,cidadeCliente,cepCliente,nascimentoCliente)values (?,?,?,?,?,?,?)";
+		String sql = "insert into Cliente(codCliente, nomeCliente, rgCliente, bairroCliente, cidadeCliente, cepCliente, nascimentoCliente) values (?,?,?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
@@ -24,7 +24,7 @@ public class ClienteDAOImp implements ClienteDAO {
 			pst.setString(5, cli.getCidadeCliente());
 			pst.setString(6, cli.getCepCliente());
 			pst.setDate(7, (Date) cli.getNascimentoCliente());
-			
+
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
@@ -38,19 +38,21 @@ public class ClienteDAOImp implements ClienteDAO {
 		}
 	}
 
+
 	@Override
 	public String alterar(Cliente cli) {
-		String sql = "update Hospedagem set nomeCliente=?,rgCliente=?,bairroCliente=?,cidadeCliente=?,cepCliente=?,nascimentoCliente=? where codCliente=?";
+		String sql = "update Cliente set nomeCliente=?, rgCliente=?, bairroCliente=?, cidadeCliente=?, cepCliente=?, nascimentoCliente=? where codCliente=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, cli.getCodCliente());
-			pst.setString(2, cli.getNomeCliente());
-			pst.setString(3, cli.getRgCliente());
-			pst.setString(4, cli.getBairroCliente());
-			pst.setString(5, cli.getCidadeCliente());
-			pst.setString(6, cli.getCepCliente());
-			pst.setDate(7, (Date) cli.getNascimentoCliente());
+			pst.setString(1, cli.getNomeCliente());
+			pst.setString(2, cli.getRgCliente());
+			pst.setString(3, cli.getBairroCliente());
+			pst.setString(4, cli.getCidadeCliente());
+			pst.setString(5, cli.getCepCliente());
+			pst.setDate(6, (Date) cli.getNascimentoCliente());
+			pst.setInt(7, cli.getCodCliente());  // Ajustado para o WHERE
+
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";
@@ -63,6 +65,7 @@ public class ClienteDAOImp implements ClienteDAO {
 			ConnectionFactory.close(con);
 		}
 	}
+
 
 	@Override
 	public String excluir(Cliente cli) {
@@ -84,6 +87,7 @@ public class ClienteDAOImp implements ClienteDAO {
 		}
 	}
 
+
 	@Override
 	public List<Cliente> listarTodos() {
 		String sql = "select * from Cliente";
@@ -102,7 +106,7 @@ public class ClienteDAOImp implements ClienteDAO {
 					cli.setCidadeCliente(rs.getString(5));
 					cli.setCepCliente(rs.getString(6));
 					cli.setNascimentoCliente(rs.getDate(7));
-					
+
 					lista.add(cli);
 				}
 				return lista;
@@ -133,7 +137,7 @@ public class ClienteDAOImp implements ClienteDAO {
 				cli.setCidadeCliente(rs.getString(5));
 				cli.setCepCliente(rs.getString(6));
 				cli.setNascimentoCliente(rs.getDate(7));
-				
+
 				return cli;
 			} else {
 				return null;
