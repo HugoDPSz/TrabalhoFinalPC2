@@ -9,9 +9,26 @@ public class Cliente {
     private String rgCliente;
     private String bairroCliente;
     private String cidadeCliente;
+    private String estadoCliente;
+    private String enderecoCliente;
     private String cepCliente;
     private Date nascimentoCliente;
 
+    public String getEstadoCliente() {
+        return estadoCliente;
+    }
+
+    public void setEstadoCliente(String estadoCliente) {
+        this.estadoCliente = estadoCliente;
+    }
+
+    public String getEnderecoCliente() {
+        return enderecoCliente;
+    }
+
+    public void setEnderecoCliente(String enderecoCliente) {
+        this.enderecoCliente = enderecoCliente;
+    }
 
     public Integer getCodCliente() {
         return codCliente;

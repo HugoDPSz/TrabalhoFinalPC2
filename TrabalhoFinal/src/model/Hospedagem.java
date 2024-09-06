@@ -6,29 +6,13 @@ public class Hospedagem {
 	private Integer codHospedagem;
 	private Integer codChale;
 	private Integer codCliente;
-	private String estado;
 	private Date dataInicio;
 	private Date dataFim;
+	private String estado;
 	private Integer qtdPessoas;
 	private Double desconto;
 	private Double valorFinal;
 
-	public Integer getCodHospedagem() {
-		return codHospedagem;
-	}
-
-	public void setCodHospedagem(Integer codHospedagem) {
-		this.codHospedagem = codHospedagem;
-	}
-
-	public Integer getCodChale() {
-		return codChale;
-	}
-
-	public void setCodChale(Integer codChale) {
-		this.codChale = codChale;
-	}
-	
 	public Integer getCodCliente() {
 		return codCliente;
 	}
@@ -37,52 +21,27 @@ public class Hospedagem {
 		this.codCliente = codCliente;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
+	public Integer getCodHospedagem() { return codHospedagem; }
+	public void setCodHospedagem(Integer codHospedagem) { this.codHospedagem = codHospedagem; }
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+	public Integer getCodChale() { return codChale; }
+	public void setCodChale(Integer codChale) { this.codChale = codChale; }
 
-	public Date getDataInicio() {
-		return dataInicio;
-	}
+	public Date getDataInicio() { return dataInicio; }
+	public void setDataInicio(Date dataInicio) { this.dataInicio = dataInicio; }
 
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
+	public Date getDataFim() { return dataFim; }
+	public void setDataFim(Date dataFIM) { this.dataFim = dataFIM; }
 
-	public Date getDataFim() {
-		return dataFim;
-	}
+	public String getEstado() { return estado; }
+	public void setEstado(String estado) { this.estado = estado; }
 
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
-	}
+	public Integer getQtdPessoas() { return qtdPessoas; }
+	public void setQtdPessoas(Integer qtdPessoas) { this.qtdPessoas = qtdPessoas; }
 
-	public Integer getQtdPessoas() {
-		return qtdPessoas;
-	}
+	public Double getDesconto() { return desconto; }
+	public void setDesconto(Double desconto) { this.desconto = desconto; }
 
-	public void setQtdPessoas(Integer qtdPessoas) {
-		this.qtdPessoas = qtdPessoas;
-	}
-
-	public Double getDesconto() {
-		return desconto;
-	}
-
-	public void setDesconto(Double desconto) {
-		this.desconto = desconto;
-	}
-
-	public Double getValorFinal() {
-		return valorFinal;
-	}
-
-	public void setValorFinal(Double valorFinal) {
-		this.valorFinal = valorFinal;
-	}
-
+	public Double getValorFinal() { return valorFinal; }
+	public void setValorFinal(Double valorFinal) { this.valorFinal = valorFinal; }
 }

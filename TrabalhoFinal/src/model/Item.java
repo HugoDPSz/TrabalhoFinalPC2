@@ -4,6 +4,14 @@ public class Item {
     public String nomeItem;
     public String descricaoItem;
 
+    public Item(String nomeItem, String descricaoItem) {
+        this.nomeItem = nomeItem;
+        this.descricaoItem = descricaoItem;
+    }
+
+    public Item() {
+    }
+
     public String getNomeItem() {
         return nomeItem;
     }

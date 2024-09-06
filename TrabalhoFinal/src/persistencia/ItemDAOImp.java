@@ -12,7 +12,7 @@ public class ItemDAOImp implements ItemDAO {
 
     @Override
     public String inserir(Item item) {
-        String sql = "INSERT INTO Item (nomeItem, descricao) VALUES (?, ?)";
+        String sql = "INSERT INTO Item (nomeItem, descricaoItem) VALUES (?, ?)";
         Connection con = ConnectionFactory.getConnection();
         try {
             PreparedStatement pst = con.prepareStatement(sql);
@@ -34,7 +34,7 @@ public class ItemDAOImp implements ItemDAO {
 
     @Override
     public String alterar(Item item) {
-        String sql = "UPDATE Item SET descricao = ? WHERE nomeItem = ?";
+        String sql = "UPDATE Item SET descricaoItem = ? WHERE nomeItem = ?";
         Connection con = ConnectionFactory.getConnection();
         try {
             PreparedStatement pst = con.prepareStatement(sql);
@@ -110,14 +110,16 @@ public class ItemDAOImp implements ItemDAO {
             while (rs.next()) {
                 Item item = new Item();
                 item.setNomeItem(rs.getString("nomeItem"));
-                item.setDescricaoItem(rs.getString("descricao"));
+                item.setDescricaoItem(rs.getString("descricaoItem")); // Corrigido para "descricaoItem"
                 lista.add(item);
             }
-            return lista;
         } catch (SQLException e) {
-            return null;
+            System.err.println("Erro ao listar itens: " + e.getMessage());
+            // Lista permanece vazia
         } finally {
             ConnectionFactory.close(con);
         }
+        return lista; // Retorna a lista (vazia se ocorreu um erro)
     }
+
 }

@@ -10,7 +10,7 @@ public class ChaleItemController {
     private ChaleItemDAO dao;
 
     public ChaleItemController() {
-        this.dao = new ChaleItemDAOImp(); // Presume-se que ChaleItemDAOImp já esteja implementado
+        this.dao = new ChaleItemDAOImp();
     }
 
     public String inserir(ChaleItem chaleItem) {

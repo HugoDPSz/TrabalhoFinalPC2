@@ -2,12 +2,8 @@ package view;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.util.List;
-
 import model.*;
 import persistencia.*;
-import persistencia.ConnectionFactory;
-import persistencia.HospedagemDAOImp;
 
 public class Teste {
 	public static void main(String[] args) {
@@ -17,95 +13,192 @@ public class Teste {
 			ConnectionFactory.close(con);
 		} else {
 			System.out.println("Falha ao estabelecer conexão.");
-			return; // Se a conexão falhar, encerramos o programa
+			return;
 		}
 
-		// Testando ChaleDAO
 		ChaleDAOImp chaleDAO = new ChaleDAOImp();
-		Chale chale = new Chale();
-		chale.setCodChale(1);
-		chale.setLocalizacao("Montanha");
-		chale.setCapacidade(4);
-		chale.setValorAltaEstacao(500.0);
-		chale.setValorBaixaEstacao(300.0);
-
-		// Inserir chalé
-		System.out.println("Inserir chalé: " + chaleDAO.inserir(chale));
-
-		// Listar todos os chalés
-		List<Chale> chales = chaleDAO.listarTodos();
-		if (chales != null) {
-			for (Chale c : chales) {
-				System.out.println(c);
-			}
-		} else {
-			System.out.println("Nenhum chalé encontrado.");
-		}
-
-		// Testando ClienteDAO
+		ChaleItemDAOImp chaleItemDAO = new ChaleItemDAOImp();
 		ClienteDAOImp clienteDAO = new ClienteDAOImp();
+		HospedagemDAOImp hospedagemDAO = new HospedagemDAOImp();
+		HospedagemServicoDAOImp hospedagemServicoDAO = new HospedagemServicoDAOImp();
+		ItemDAOImp itemDAO = new ItemDAOImp();
+		ServicoDAOImp servicoDAO = new ServicoDAOImp();
+		TelefoneDAOImp telefoneDAO = new TelefoneDAOImp();
+
 		Cliente cliente = new Cliente();
 		cliente.setCodCliente(1);
-		cliente.setNomeCliente("João Silva");
-		cliente.setRgCliente("123456789");
+		cliente.setNomeCliente("John Doe");
+		cliente.setEnderecoCliente("123 Main St");
 		cliente.setBairroCliente("Centro");
-		cliente.setCidadeCliente("São Paulo");
-		cliente.setCepCliente("01001-000");
+		cliente.setCidadeCliente("Cidade Exemplo");
+		cliente.setEstadoCliente("SP");
+		cliente.setCepCliente("12345-678");
 		cliente.setNascimentoCliente(Date.valueOf("1990-01-01"));
+		cliente.setRgCliente("123456789");
+		System.out.println(clienteDAO.inserir(cliente));
 
-		// Inserir cliente
-		System.out.println("Inserir cliente: " + clienteDAO.inserir(cliente));
+		Chale chale = new Chale();
+		chale.setCodChale(1);
+		chale.setLocalizacao("Zona Sul");
+		chale.setCapacidade(4);
+		chale.setValorAltaEstacao(1000.0);
+		chale.setValorBaixaEstacao(500.0);
+		System.out.println(chaleDAO.inserir(chale));
 
-		// Listar todos os clientes
-		List<Cliente> clientes = clienteDAO.listarTodos();
-		if (clientes != null) {
-			for (Cliente cli : clientes) {
-				System.out.println(cli);
-			}
-		} else {
-			System.out.println("Nenhum cliente encontrado.");
-		}
+		Item item = new Item();
+		item.setNomeItem("Toalha");
+		item.setDescricaoItem("Toalha de banho com logo");
+		System.out.println(itemDAO.inserir(item));
 
-		// Testando HospedagemDAO (agora que já temos um cliente e um chalé)
-		HospedagemDAOImp hospedagemDAO = new HospedagemDAOImp();
+		Servico servico = new Servico();
+		servico.setCodServico(1);
+		servico.setNomeServico("Limpeza");
+		servico.setValorServico(50);
+		System.out.println(servicoDAO.inserir(servico));
+
+		Telefone telefone = new Telefone();
+		telefone.setTelefone("987654321");
+		telefone.setCodCliente(1);
+		telefone.setTipoTelefone("Celular");
+		telefoneDAO.inserir(telefone);
+
 		Hospedagem hospedagem = new Hospedagem();
 		hospedagem.setCodHospedagem(1);
-		hospedagem.setCodChale(1);  // Chalé inserido anteriormente
-		hospedagem.setCodCliente(1);  // Cliente inserido anteriormente
-		hospedagem.setEstado("Confirmada");
-		hospedagem.setDataInicio(Date.valueOf("2024-12-01"));
-		hospedagem.setDataFim(Date.valueOf("2024-12-10"));
-		hospedagem.setQtdPessoas(3);
+		hospedagem.setCodChale(1);
+		hospedagem.setCodCliente(1);
+		hospedagem.setDataInicio(Date.valueOf("2024-09-01"));
+		hospedagem.setDataFim(Date.valueOf("2024-09-10"));
+		hospedagem.setEstado("Ativa");
+		hospedagem.setQtdPessoas(2);
 		hospedagem.setDesconto(10.0);
-		hospedagem.setValorFinal(2700.0);
+		hospedagem.setValorFinal(900.0);
+		System.out.println(hospedagemDAO.inserir(hospedagem));
 
-		// Inserir hospedagem
-		System.out.println("Inserir hospedagem: " + hospedagemDAO.inserir(hospedagem));
+		HospedagemServico hospedagemServico = new HospedagemServico();
+		hospedagemServico.setCodHospedagem(1);
+		hospedagemServico.setDataServico(java.time.LocalDate.now());
+		hospedagemServico.setCodServico(1);
+		hospedagemServico.setValorServico(50); // Valor do serviço
+		System.out.println(hospedagemServicoDAO.inserir(hospedagemServico));
 
-		// Alterar hospedagem
-		hospedagem.setQtdPessoas(4);
-		System.out.println("Alterar hospedagem: " + hospedagemDAO.alterar(hospedagem));
-
-		// Listar todas as hospedagens
-		List<Hospedagem> hospedagens = hospedagemDAO.listarTodos();
-		if (hospedagens != null) {
-			System.out.println("Listar todas as hospedagens:");
-			for (Hospedagem hos : hospedagens) {
-				System.out.println(hos);
-			}
-		} else {
-			System.out.println("Nenhuma hospedagem encontrada.");
+		// Criando e inserindo um ChaleItem
+		ChaleItem chaleItem = new ChaleItem();
+		chaleItem.setCodChale(1);
+		chaleItem.setNomeItem("Toalha");
+		System.out.println(chaleItemDAO.inserir(chaleItem));
+		System.out.println("---------------------------------------");
+		// Listando todos os Clientes
+		System.out.println("Clientes:");
+		for (Cliente c : clienteDAO.listarTodos()) {
+			System.out.println(c.getNomeCliente() + " - " + c.getEnderecoCliente());
+		}
+		System.out.println("---------------------------------------");
+		System.out.println("Chales:");
+		for (Chale ch : chaleDAO.listarTodos()) {
+			System.out.println(ch.getCodChale() + " - " + ch.getLocalizacao());
+		}
+		System.out.println("---------------------------------------");
+		System.out.println("Itens:");
+		for (Item i : itemDAO.listarTodos()) {
+			System.out.println(i.getNomeItem() + " - " + i.getDescricaoItem());
+		}
+		System.out.println("---------------------------------------");
+		System.out.println("Serviços:");
+		for (Servico s : servicoDAO.listarTodos()) {
+			System.out.println(s.getCodServico() + " - " + s.getNomeServico());
+		}
+		System.out.println("---------------------------------------");
+		System.out.println("Telefones:");
+		for (Telefone t : telefoneDAO.listarTodos()) {
+			System.out.println(t.getTelefone() + " - " + t.getTipoTelefone());
+		}
+		System.out.println("---------------------------------------");
+		System.out.println("Hospedagens:");
+		for (Hospedagem h : hospedagemDAO.listarTodos()) {
+			System.out.println(h.getCodHospedagem() + " - " + h.getEstado());
+		}
+		System.out.println("---------------------------------------");
+		System.out.println("Hospedagem Serviços:");
+		for (HospedagemServico hs : hospedagemServicoDAO.listarTodos()) {
+			System.out.println(hs.getCodHospedagem() + " - " + hs.getCodServico() + " - " + hs.getDataServico());
 		}
 
-		// Pesquisar hospedagem por código
-		Hospedagem hospedagemEncontrada = hospedagemDAO.pesquisarPorCod(1);
-		System.out.println("Hospedagem encontrada: " + hospedagemEncontrada);
+		System.out.println("---------------------------------------");
+		System.out.println("Chale Items:");
+		for (ChaleItem ci : chaleItemDAO.listarTodos()) {
+			System.out.println(ci.getCodChale() + " - " + ci.getNomeItem());
+		}
 
-		// Excluir hospedagem
-		System.out.println("Excluir hospedagem: " + hospedagemDAO.excluir(hospedagem));
+		System.out.println("---------------------------------------");
 
-		// Excluir cliente e chalé após a hospedagem
-		System.out.println("Excluir cliente: " + clienteDAO.excluir(cliente));
-		System.out.println("Excluir chalé: " + chaleDAO.excluir(chale));
+
+		try {
+			itemDAO.excluir(item.getNomeItem());
+			System.out.println("Item excluído com sucesso.");
+		} catch (Exception e) {
+			System.out.println("Erro ao excluir item: " + e.getMessage());
+		}
+
+		System.out.println("Items:");
+		for (ChaleItem ci : chaleItemDAO.listarTodos()) {
+			System.out.println(ci.getCodChale() + " - " + ci.getNomeItem());
+		}
+
+		try {
+			hospedagemDAO.excluir(hospedagem);
+			System.out.println("Hospedagem excluída com sucesso.");
+		} catch (Exception e) {
+			System.out.println("Erro ao excluir hospedagem: " + e.getMessage());
+		}
+
+		System.out.println("Hospedagens:");
+		for (Hospedagem h : hospedagemDAO.listarTodos()) {
+			System.out.println(h.getCodHospedagem() + " - " + h.getEstado());
+		}
+
+		try {
+			clienteDAO.excluir(cliente);
+			System.out.println("Cliente excluído com sucesso.");
+		} catch (Exception e) {
+			System.out.println("Erro ao excluir cliente: " + e.getMessage());
+		}
+
+		System.out.println("Clientes:");
+		for (Cliente c : clienteDAO.listarTodos()) {
+			System.out.println(c.getNomeCliente() + " - " + c.getEnderecoCliente());
+		}
+
+		try {
+			chaleDAO.excluir(chale.getCodChale());
+			System.out.println("Chale excluído com sucesso.");
+		} catch (Exception e) {
+			System.out.println("Erro ao excluir chale: " + e.getMessage());
+		}
+
+		System.out.println("Chales:");
+		for (Chale ch : chaleDAO.listarTodos()) {
+			System.out.println(ch.getCodChale() + " - " + ch.getLocalizacao());
+		}
+
+
+		try {
+			servicoDAO.excluir(servico);
+			System.out.println("Servico excluído com sucesso.");
+		} catch (Exception e) {
+			System.out.println("Erro ao excluir servico: " + e.getMessage());
+		}
+
+		System.out.println("Serviços:");
+		for (Servico s : servicoDAO.listarTodos()) {
+			System.out.println(s.getCodServico() + " - " + s.getNomeServico());
+		}
+
+		try {
+			telefoneDAO.excluir(telefone.getTelefone());
+			System.out.println("Telefone excluído com sucesso.");
+		} catch (Exception e) {
+			System.out.println("Erro ao excluir telefone: " + e.getMessage());
+		}
+
 	}
 }

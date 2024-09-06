@@ -15,10 +15,10 @@ public class ChaleController {
 		ChaleDAOImp dao = new ChaleDAOImp();
 		return dao.alterar(cha);
 	}
-	
-	public String excluir(Chale cha) {
+
+	public String excluir(Integer codChale) {
 		ChaleDAOImp dao = new ChaleDAOImp();
-		return dao.excluir(cha);
+		return dao.excluir(codChale);
 	}
 	
 	public List<Chale> listarTodos(Chale cha){

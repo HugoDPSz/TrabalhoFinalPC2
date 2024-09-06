@@ -50,20 +50,19 @@ public class TelefoneDAOImp implements TelefoneDAO {
 
     @Override
     public void excluir(String telefone) {
-        String sql = "delete from Telefone where telefone=?";
+        String sql = "DELETE FROM Telefone WHERE telefone = ?";
         Connection con = ConnectionFactory.getConnection();
         try {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, telefone);
 
-            pst.executeUpdate();
-            System.out.println("Telefone excluído com sucesso.");
         } catch (SQLException e) {
             System.out.println("Erro ao excluir telefone: " + e.getMessage());
         } finally {
             ConnectionFactory.close(con);
         }
     }
+
 
     @Override
     public List<Telefone> listarTodos() {

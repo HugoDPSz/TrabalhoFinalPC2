@@ -60,26 +60,24 @@ public class ChaleDAOImp implements ChaleDAO {
 		}
 	}
 
-
-	@Override
-	public String excluir(Chale cha) {
-		String sql = "delete from Chale where codChale=?";
-		Connection con = ConnectionFactory.getConnection();
-		try {
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, cha.getCodChale());
+	public String excluir(Integer codChale) {
+		String sql = "DELETE FROM Chale WHERE codChale = ?";
+		try (Connection con = ConnectionFactory.getConnection();
+			 PreparedStatement pst = con.prepareStatement(sql)) {
+			pst.setInt(1, codChale);
 			int res = pst.executeUpdate();
 			if (res > 0) {
-				return "Excluído com sucesso.";
+				return "Chale excluído com sucesso.";
 			} else {
-				return "Erro ao excluir.";
+				return "Nenhum chale encontrado com o código fornecido.";
 			}
 		} catch (SQLException e) {
-			return e.getMessage();
-		} finally {
-			ConnectionFactory.close(con);
+			// Log do erro para depuração
+			e.printStackTrace();
+			return "Erro ao excluir chale: " + e.getMessage();
 		}
 	}
+
 
 	@Override
 	public List<Chale> listarTodos() {

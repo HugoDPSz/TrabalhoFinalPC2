@@ -47,4 +47,5 @@ public class Chale {
 		this.valorBaixaEstacao = valorBaixaEstacao;
 	}
 
+
 }

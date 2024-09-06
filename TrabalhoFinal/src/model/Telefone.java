@@ -5,6 +5,15 @@ public class Telefone {
     private int codCliente;
     private String tipoTelefone;
 
+    public Telefone(String telefone, int codCliente, String tipoTelefone) {
+        this.telefone = telefone;
+        this.codCliente = codCliente;
+        this.tipoTelefone = tipoTelefone;
+    }
+
+    public Telefone() {
+    }
+
     public String getTelefone() {
         return telefone;
     }

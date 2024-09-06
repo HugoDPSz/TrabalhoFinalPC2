@@ -8,6 +8,17 @@ public class HospedagemServico {
     private Integer codServico;
     private Integer valorServico;
 
+    public HospedagemServico(Integer codHospedagem, LocalDate dataServico, Integer codServico, Integer valorServico) {
+        this.codHospedagem = codHospedagem;
+        this.dataServico = dataServico;
+        this.codServico = codServico;
+        this.valorServico = valorServico;
+    }
+
+    public HospedagemServico() {
+
+    }
+
     public Integer getValorServico() {
         return valorServico;
     }
