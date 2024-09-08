@@ -25,22 +25,18 @@ public class TelefoneForm extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Layout
         setLayout(new BorderLayout());
 
-        // Tabela
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Painel de Botões
         JPanel buttonPanel = new JPanel();
         JButton addButton = new JButton("Adicionar Telefone");
         JButton updateButton = new JButton("Alterar Telefone");
         JButton deleteButton = new JButton("Excluir Telefone");
         JButton listButton = new JButton("Listar Telefones");
 
-        // Adicionar Ação aos Botões
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +72,6 @@ public class TelefoneForm extends JFrame {
 
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // Lista inicial de telefones
         listTelefones();
     }
 

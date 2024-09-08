@@ -24,15 +24,12 @@ public class ClienteForm extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Layout
         setLayout(new BorderLayout());
 
-        // Tabela
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Painel de Campos
         JPanel formPanel = new JPanel(new GridLayout(10, 2));
         formPanel.add(new JLabel("Código:"));
         codField = new JTextField();
@@ -73,7 +70,6 @@ public class ClienteForm extends JFrame {
 
         add(formPanel, BorderLayout.NORTH);
 
-        // Painel de Botões
         JPanel buttonPanel = new JPanel();
         JButton addButton = new JButton("Adicionar");
         JButton updateButton = new JButton("Atualizar");

@@ -17,7 +17,6 @@ public class ServicoForm extends JFrame {
     private JTable table;
     private final ServicoDAOImp servicoDAO = new ServicoDAOImp();
 
-    // Campos de entrada para serviço
     private JTextField codServicoField;
     private JTextField nomeServicoField;
     private JTextField valorServicoField;
@@ -28,10 +27,8 @@ public class ServicoForm extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Layout
         setLayout(new BorderLayout());
 
-        // Painel de Formulário
         JPanel formPanel = new JPanel(new GridLayout(3, 2));
 
         formPanel.add(new JLabel("Código:"));
@@ -48,12 +45,10 @@ public class ServicoForm extends JFrame {
 
         add(formPanel, BorderLayout.NORTH);
 
-        // Tabela
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Painel de Botões
         JPanel buttonPanel = new JPanel();
         JButton addButton = new JButton("Adicionar");
         JButton updateButton = new JButton("Atualizar");
@@ -139,7 +134,7 @@ public class ServicoForm extends JFrame {
     private void listServicos() {
         try {
             List<Servico> servicos = servicoDAO.listarTodos();
-            tableModel.setRowCount(0); // Limpa a tabela antes de adicionar os novos dados
+            tableModel.setRowCount(0); 
             if (servicos != null) {
                 for (Servico servico : servicos) {
                     tableModel.addRow(new Object[]{

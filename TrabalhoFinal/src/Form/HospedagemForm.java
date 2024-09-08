@@ -18,7 +18,6 @@ public class HospedagemForm extends JFrame {
     private JTable table;
     private final HospedagemDAOImp hospedagemDAO = new HospedagemDAOImp();
 
-    // Campos de entrada para hospedagem
     private JTextField codHospedagemField;
     private JTextField codChaleField;
     private JTextField codClienteField;
@@ -35,10 +34,8 @@ public class HospedagemForm extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Layout
         setLayout(new BorderLayout());
 
-        // Painel de Formulário
         JPanel formPanel = new JPanel(new GridLayout(9, 2));
 
         formPanel.add(new JLabel("Código:"));
@@ -79,12 +76,10 @@ public class HospedagemForm extends JFrame {
 
         add(formPanel, BorderLayout.NORTH);
 
-        // Tabela
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Painel de Botões
         JPanel buttonPanel = new JPanel();
         JButton addButton = new JButton("Adicionar");
         JButton updateButton = new JButton("Atualizar");

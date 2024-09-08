@@ -26,16 +26,13 @@ public class ChaleItemsForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Layout
         setLayout(new BorderLayout());
 
-        // Tabela
-        tableModel.setRowCount(0); // Inicializa a tabela vazia
+        tableModel.setRowCount(0);
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Painel de Formulário
         JPanel formPanel = new JPanel(new GridLayout(3, 2));
 
         formPanel.add(new JLabel("Código do Chalé:"));
@@ -48,7 +45,6 @@ public class ChaleItemsForm extends JFrame {
 
         add(formPanel, BorderLayout.NORTH);
 
-        // Painel de Botões
         JPanel buttonPanel = new JPanel();
         JButton addButton = new JButton("Adicionar");
         JButton deleteButton = new JButton("Excluir");
@@ -112,7 +108,7 @@ public class ChaleItemsForm extends JFrame {
 
     private void listAllChaleItems() {
         List<ChaleItem> chaleItems = chaleItemDAO.listarTodos();
-        tableModel.setRowCount(0); // Limpa a tabela antes de adicionar os novos dados
+        tableModel.setRowCount(0);
         if (chaleItems != null) {
             for (ChaleItem chaleItem : chaleItems) {
                 tableModel.addRow(new Object[]{

@@ -17,7 +17,6 @@ public class ItemsForm extends JFrame {
     private JTable table;
     private final ItemDAOImp itemDAO = new ItemDAOImp();
 
-    // Campos de entrada para nome e descrição do item
     private JTextField nomeItemField;
     private JTextArea descricaoItemArea;
 
@@ -27,10 +26,8 @@ public class ItemsForm extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Layout
         setLayout(new BorderLayout());
 
-        // Painel de Formulário
         JPanel formPanel = new JPanel(new GridLayout(3, 2));
 
         formPanel.add(new JLabel("Nome do Item:"));
@@ -44,12 +41,10 @@ public class ItemsForm extends JFrame {
 
         add(formPanel, BorderLayout.NORTH);
 
-        // Tabela
         table = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Painel de Botões
         JPanel buttonPanel = new JPanel();
         JButton addItemButton = new JButton("Adicionar Item");
         JButton listItemsButton = new JButton("Listar Itens Disponíveis");

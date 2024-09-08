@@ -15,7 +15,7 @@ public class MainForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        setLayout(new GridLayout(5, 1, 10, 10)); // Layout de 3 linhas e 1 coluna
+        setLayout(new GridLayout(5, 1, 10, 10));
 
         JButton chaleButton = new JButton("Chalé");
         JButton hospedagemButton = new JButton("Hospedagem");
@@ -58,7 +58,6 @@ public class MainForm extends JFrame {
             }
         });
 
-        // Adiciona os botões ao painel
         add(chaleButton);
         add(hospedagemButton);
         add(clienteButton);
