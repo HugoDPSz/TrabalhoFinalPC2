@@ -7,6 +7,13 @@ public class Chale {
 	private Double valorAltaEstacao;
 	private Double valorBaixaEstacao;
 
+    public Chale(int codChale, String localizacao, int capacidade, double valorAltaEstacao, double valorBaixaEstacao) {
+    }
+
+	public Chale() {
+
+	}
+
 	public Integer getCodChale() {
 		return codChale;
 	}

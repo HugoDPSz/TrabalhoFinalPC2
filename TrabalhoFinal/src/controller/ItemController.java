@@ -16,10 +16,6 @@ public class ItemController {
         return itemDAO.inserir(item);
     }
 
-    public String alterar(Item item) {
-        return itemDAO.alterar(item);
-    }
-
     public String excluir(String nomeItem) {
         return itemDAO.excluir(nomeItem);
     }

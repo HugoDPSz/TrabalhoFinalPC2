@@ -13,6 +13,10 @@ public class ChaleDAOImp implements ChaleDAO {
 
 	@Override
 	public String inserir(Chale cha) {
+		if (cha.getCodChale() == null) {
+			return "Código do chalé não pode ser nulo.";
+		}
+
 		String sql = "insert into Chale(codChale,localizacao,capacidade,valorAltaEstacao,valorBaixaEstacao)values (?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
@@ -34,6 +38,7 @@ public class ChaleDAOImp implements ChaleDAO {
 			ConnectionFactory.close(con);
 		}
 	}
+
 
 	@Override
 	public String alterar(Chale cha) {
@@ -110,7 +115,7 @@ public class ChaleDAOImp implements ChaleDAO {
 
 	@Override
 	public Chale pesquisarPorCod(Integer codChale) {
-		String sql = "select * from Hospedagem where codHospedagem=?";
+		String sql = "select * from Chale where codChale=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
