@@ -21,8 +21,8 @@ public class ChaleItemController {
         return dao.alterar(chaleItem);
     }
 
-    public String excluir(ChaleItem chaleItem) {
-        return dao.excluir(chaleItem);
+    String excluir(int codChale, String nomeItem) {
+        return dao.excluir(codChale, nomeItem);
     }
 
     public List<ChaleItem> listarTodos() {

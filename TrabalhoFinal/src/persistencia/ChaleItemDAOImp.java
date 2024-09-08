@@ -39,12 +39,12 @@ public class ChaleItemDAOImp implements ChaleItemDAO {
     }
 
     @Override
-    public String excluir(ChaleItem ci) {
+    public String excluir(int codChale, String nomeItem) {
         String sql = "DELETE FROM Chale_Item WHERE codChale = ? AND nomeItem = ?";
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement pst = con.prepareStatement(sql)) {
-            pst.setInt(1, ci.getCodChale());
-            pst.setString(2, ci.getNomeItem());
+            pst.setInt(1, codChale);
+            pst.setString(2, nomeItem);
             int res = pst.executeUpdate();
             return res > 0 ? "Excluído com sucesso." : "Erro ao excluir.";
         } catch (SQLException e) {
@@ -66,6 +66,7 @@ public class ChaleItemDAOImp implements ChaleItemDAO {
                 lista.add(ci);
             }
         } catch (SQLException e) {
+            System.err.println("Erro ao listar ChaleItems: " + e.getMessage());
         }
         return lista;
     }
@@ -86,6 +87,7 @@ public class ChaleItemDAOImp implements ChaleItemDAO {
                 }
             }
         } catch (SQLException e) {
+            System.err.println("Erro ao pesquisar ChaleItem: " + e.getMessage());
         }
         return null;
     }
