@@ -66,7 +66,7 @@ public class ClienteForm extends JFrame {
         cepField = new JTextField();
         formPanel.add(cepField);
 
-        formPanel.add(new JLabel("Nascimento (yyyy-MM-dd):"));
+        formPanel.add(new JLabel("Nascimento (YYYY-MM-DD)):"));
         nascimentoField = new JFormattedTextField();
         nascimentoField.setColumns(10);
         formPanel.add(nascimentoField);
@@ -120,7 +120,7 @@ public class ClienteForm extends JFrame {
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(listButton);
-        buttonPanel.add(managePhonesButton); // Adiciona o botão de gerenciar telefones
+        buttonPanel.add(managePhonesButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
@@ -168,7 +168,7 @@ public class ClienteForm extends JFrame {
 
     private void listClientes() {
         List<Cliente> clientes = clienteDAO.listarTodos();
-        tableModel.setRowCount(0); // Limpa a tabela antes de adicionar os novos dados
+        tableModel.setRowCount(0);
         if (clientes != null) {
             for (Cliente cliente : clientes) {
                 tableModel.addRow(new Object[]{
@@ -200,9 +200,4 @@ public class ClienteForm extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new ClienteForm().setVisible(true);
-        });
-    }
 }

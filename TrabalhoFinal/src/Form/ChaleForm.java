@@ -69,7 +69,6 @@ public class ChaleForm extends JFrame {
         JButton updateButton = new JButton("Atualizar");
         JButton deleteButton = new JButton("Excluir");
         JButton listButton = new JButton("Listar Todos");
-        JButton createItemButton = new JButton("Criar Item do Chalé");
         JButton manageItemButton = new JButton("Gerenciar Itens");
 
         addButton.addActionListener(new ActionListener() {
@@ -100,12 +99,6 @@ public class ChaleForm extends JFrame {
             }
         });
 
-        createItemButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openItemsForm();
-            }
-        });
 
         manageItemButton.addActionListener(new ActionListener() {
             @Override
@@ -118,7 +111,6 @@ public class ChaleForm extends JFrame {
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(listButton);
-        buttonPanel.add(createItemButton);
         buttonPanel.add(manageItemButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
@@ -194,16 +186,6 @@ public class ChaleForm extends JFrame {
         }
     }
 
-    private void openItemsForm() {
-        try {
-            int codChale = Integer.parseInt(codChaleField.getText());
-            ItemsForm itemsForm = new ItemsForm(codChale); // Passa o código do chalé
-            itemsForm.setVisible(true);
-        } catch (NumberFormatException e) {
-            showMessage("Erro: Código do chalé inválido.");
-        }
-    }
-
     private void openChaleItemsForm() {
         // Abre o formulário para gerenciar os itens dos chalés
         ChaleItemsForm chaleItemsForm = new ChaleItemsForm();
@@ -212,11 +194,5 @@ public class ChaleForm extends JFrame {
 
     private void showMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new ChaleForm().setVisible(true);
-        });
     }
 }

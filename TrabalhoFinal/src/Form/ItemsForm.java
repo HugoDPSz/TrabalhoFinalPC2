@@ -10,12 +10,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsForm extends JFrame {
 
-    private final int codChale;
     private final DefaultTableModel tableModel = new DefaultTableModel(
             new Object[]{"Nome do Item", "Descrição"}, 0);
     private JTable table;
@@ -26,9 +24,8 @@ public class ItemsForm extends JFrame {
     private JTextField nomeItemField;
     private JTextArea descricaoItemArea;
 
-    public ItemsForm(int codChale) {
-        this.codChale = codChale;
-        setTitle("Gerenciar Itens do Chalé");
+    public ItemsForm() {
+        setTitle("Gerenciar Itens");
         setSize(600, 400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -57,7 +54,6 @@ public class ItemsForm extends JFrame {
 
         // Painel de Botões
         JPanel buttonPanel = new JPanel();
-        JButton addButton = new JButton("Adicionar Itens ao Chalé");
         JButton listItemsButton = new JButton("Listar Itens Disponíveis");
         JButton deleteButton = new JButton("Excluir Item");
 
@@ -65,13 +61,6 @@ public class ItemsForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 listAvailableItems();
-            }
-        });
-
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addItemsToChale();
             }
         });
 
@@ -83,7 +72,6 @@ public class ItemsForm extends JFrame {
         });
 
         buttonPanel.add(listItemsButton);
-        buttonPanel.add(addButton);
         buttonPanel.add(deleteButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
@@ -103,33 +91,6 @@ public class ItemsForm extends JFrame {
         }
     }
 
-    private void addItemsToChale() {
-        String nomeItem = nomeItemField.getText().trim();
-        String descricaoItem = descricaoItemArea.getText().trim();
-
-        if (nomeItem.isEmpty() || descricaoItem.isEmpty()) {
-            showMessage("Erro: Nome e descrição do item não podem estar vazios.");
-            return;
-        }
-
-        try {
-            Item item = new Item();
-            item.setNomeItem(nomeItem);
-            item.setDescricaoItem(descricaoItem);
-
-            String result = itemDAO.inserir(item);
-            if ("Sucesso".equals(result)) {
-                ChaleItem chaleItem = new ChaleItem();
-                chaleItem.setCodChale(codChale);
-                chaleItem.setNomeItem(nomeItem);
-                chaleItemDAO.inserir(chaleItem);
-                showMessage("Itens adicionados ao chalé com sucesso.");
-            }
-        } catch (Exception e) {
-            showMessage("Erro ao adicionar item");
-        }
-    }
-
     private void deleteItem() {
         int selectedRow = table.getSelectedRow();
         if (selectedRow != -1) {
@@ -145,29 +106,12 @@ public class ItemsForm extends JFrame {
                         showMessage("Erro ao deletar");
                     }
                 } catch (Exception e) {
-                    showMessage("Erro ao excluir item" );
+                    showMessage("Erro ao excluir item: " + e.getMessage());
                 }
             }
         } else {
             showMessage("Selecione um item para excluir.");
         }
-    }
-
-    private List<Item> getSelectedItems() {
-        List<Item> selectedItems = new ArrayList<>();
-        int[] selectedRows = table.getSelectedRows();
-        for (int row : selectedRows) {
-            String itemName = (String) tableModel.getValueAt(row, 0);
-            try {
-                Item item = itemDAO.buscarPorNome(itemName);
-                if (item != null) {
-                    selectedItems.add(item);
-                }
-            } catch (Exception e) {
-                showMessage("Erro ao buscar item: " + e.getMessage());
-            }
-        }
-        return selectedItems;
     }
 
     private void showMessage(String message) {

@@ -127,9 +127,4 @@ public class ChaleItemsForm extends JFrame {
         JOptionPane.showMessageDialog(this, message);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new ChaleItemsForm().setVisible(true);
-        });
-    }
 }

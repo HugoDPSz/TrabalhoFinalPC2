@@ -1,7 +1,6 @@
 package persistencia;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class HospedagemDAOImp implements HospedagemDAO {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, hos.getCodHospedagem());
 			pst.setInt(2, hos.getCodChale());
-			pst.setInt(3, hos.getCodCliente()); // Corrigido para incluir codCliente
+			pst.setInt(3, hos.getCodCliente());
 			pst.setString(4, hos.getEstado());
 			pst.setDate(5, hos.getDataInicio());
 			pst.setDate(6, hos.getDataFim());
@@ -46,14 +45,14 @@ public class HospedagemDAOImp implements HospedagemDAO {
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, hos.getCodChale());
-			pst.setInt(2, hos.getCodCliente()); // Corrigido para incluir codCliente
+			pst.setInt(2, hos.getCodCliente());
 			pst.setString(3, hos.getEstado());
 			pst.setDate(4, hos.getDataInicio());
 			pst.setDate(5, hos.getDataFim());
 			pst.setInt(6, hos.getQtdPessoas());
 			pst.setDouble(7, hos.getDesconto());
 			pst.setDouble(8, hos.getValorFinal());
-			pst.setInt(9, hos.getCodHospedagem()); // Corrigido para definir codHospedagem na condição WHERE
+			pst.setInt(9, hos.getCodHospedagem());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";

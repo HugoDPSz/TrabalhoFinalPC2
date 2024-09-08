@@ -1,5 +1,7 @@
 package Form;
 
+import model.Item;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,16 +15,15 @@ public class MainForm extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Layout
-        setLayout(new GridLayout(3, 1, 10, 10)); // Layout de 3 linhas e 1 coluna
+        setLayout(new GridLayout(5, 1, 10, 10)); // Layout de 3 linhas e 1 coluna
 
-        // Botões
-        JButton chaléButton = new JButton("Chalé");
+        JButton chaleButton = new JButton("Chalé");
         JButton hospedagemButton = new JButton("Hospedagem");
         JButton clienteButton = new JButton("Cliente");
+        JButton itemButton = new JButton("Criar item");
+        JButton servicoButton = new JButton("Criar serviço");
 
-        // Adiciona ActionListener para abrir as respectivas telas
-        chaléButton.addActionListener(new ActionListener() {
+        chaleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ChaleForm().setVisible(true);
@@ -32,9 +33,7 @@ public class MainForm extends JFrame {
         hospedagemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Crie a classe HospedagemForm para a tela de Hospedagem
-                // new HospedagemForm().setVisible(true);
-                JOptionPane.showMessageDialog(MainForm.this, "Tela de Hospedagem ainda não criada.");
+               new HospedagemForm().setVisible(true);
             }
         });
 
@@ -45,10 +44,26 @@ public class MainForm extends JFrame {
             }
         });
 
+        itemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ItemsForm().setVisible(true);
+            }
+        });
+
+        servicoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ServicoForm().setVisible(true);
+            }
+        });
+
         // Adiciona os botões ao painel
-        add(chaléButton);
+        add(chaleButton);
         add(hospedagemButton);
         add(clienteButton);
+        add(itemButton);
+        add(servicoButton);
     }
 
     public static void main(String[] args) {

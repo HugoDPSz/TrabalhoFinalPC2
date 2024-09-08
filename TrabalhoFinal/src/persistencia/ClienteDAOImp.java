@@ -24,8 +24,6 @@ public class ClienteDAOImp implements ClienteDAO {
 			pst.setString(6, cli.getEstadoCliente());
 			pst.setString(7, cli.getEnderecoCliente());
 			pst.setString(8, cli.getCepCliente());
-
-			// Conversão de java.util.Date para java.sql.Date
 			pst.setDate(9, new Date(cli.getNascimentoCliente().getTime()));
 
 			int res = pst.executeUpdate();
