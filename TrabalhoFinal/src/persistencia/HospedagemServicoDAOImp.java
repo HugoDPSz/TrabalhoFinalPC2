@@ -42,13 +42,13 @@ public class HospedagemServicoDAOImp implements HospedagemServicoDAO {
     }
 
     @Override
-    public String excluir(HospedagemServico hospedagemServico) {
+    public String excluir(Integer codHospedagem, Date dataServico, Integer codServico) {
         String sql = "DELETE FROM hospedagem_servico WHERE codHospedagem = ? AND dataServico = ? AND codServico = ?";
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement pst = con.prepareStatement(sql)) {
-            pst.setInt(1, hospedagemServico.getCodHospedagem());
-            pst.setDate(2, Date.valueOf(hospedagemServico.getDataServico()));
-            pst.setInt(3, hospedagemServico.getCodServico());
+            pst.setInt(1, codHospedagem);
+            pst.setDate(2, dataServico);
+            pst.setInt(3, codServico);
             int res = pst.executeUpdate();
             return res > 0 ? "Excluído com sucesso." : "Erro ao excluir.";
         } catch (SQLException e) {

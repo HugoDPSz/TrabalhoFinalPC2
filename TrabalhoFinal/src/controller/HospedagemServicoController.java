@@ -2,6 +2,8 @@ package controller;
 
 import model.HospedagemServico;
 import persistencia.HospedagemServicoDAO;
+
+import java.sql.Date;
 import java.util.List;
 
 public class HospedagemServicoController {
@@ -15,8 +17,8 @@ public class HospedagemServicoController {
         return dao.alterar(hospedagemServico);
     }
 
-    public String excluir(HospedagemServico hospedagemServico) {
-        return dao.excluir(hospedagemServico);
+    public String excluir(Integer codHospedagem, Date dataServico, Integer codServico) {
+        return dao.excluir(codHospedagem, dataServico, codServico);
     }
 
     public List<HospedagemServico> listarTodos() {

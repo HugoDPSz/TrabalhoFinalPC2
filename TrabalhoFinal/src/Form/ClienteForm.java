@@ -162,7 +162,7 @@ public class ClienteForm extends JFrame {
         Cliente cliente = new Cliente();
         cliente.setCodCliente(codCliente);
 
-        String result = clienteDAO.excluir(cliente);
+        String result = clienteDAO.excluir(codCliente);
         showMessage(result);
     }
 

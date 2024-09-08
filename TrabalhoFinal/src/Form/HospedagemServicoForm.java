@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -135,8 +136,10 @@ public class HospedagemServicoForm extends JFrame {
             hospedagemServico.setCodHospedagem(codHospedagem);
             hospedagemServico.setDataServico(dataServico);
             hospedagemServico.setCodServico(codServico);
+            
+            java.sql.Date sqlDate = java.sql.Date.valueOf(dataServico);
 
-            String result = hospedagemServicoDAO.excluir(hospedagemServico);
+            String result = hospedagemServicoDAO.excluir(codHospedagem, sqlDate, codServico);
             showMessage(result);
         } catch (Exception e) {
             showMessage("Erro ao excluir hospedagem e serviço: " + e.getMessage());

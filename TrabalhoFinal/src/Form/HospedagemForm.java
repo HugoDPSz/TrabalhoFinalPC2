@@ -181,7 +181,7 @@ public class HospedagemForm extends JFrame {
             int codHospedagem = Integer.parseInt(codHospedagemField.getText().trim());
             Hospedagem hos = new Hospedagem();
             hos.setCodHospedagem(codHospedagem);
-            String result = hospedagemDAO.excluir(hos);
+            String result = hospedagemDAO.excluir(codHospedagem);
             showMessage(result);
         } catch (Exception e) {
             showMessage("Erro ao excluir hospedagem: " + e.getMessage());

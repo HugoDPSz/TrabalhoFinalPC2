@@ -57,11 +57,11 @@ public class ClienteDAOImp implements ClienteDAO {
 	}
 
 	@Override
-	public String excluir(Cliente cli) {
+	public String excluir(Integer codCliente) {
 		String sql = "DELETE FROM Cliente WHERE codCliente=?";
 		try (Connection con = ConnectionFactory.getConnection();
 			 PreparedStatement pst = con.prepareStatement(sql)) {
-			pst.setInt(1, cli.getCodCliente());
+			pst.setInt(1, codCliente);
 			int res = pst.executeUpdate();
 			return res > 0 ? "Excluído com sucesso." : "Erro ao excluir.";
 		} catch (SQLException e) {

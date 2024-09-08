@@ -67,12 +67,12 @@ public class HospedagemDAOImp implements HospedagemDAO {
 	}
 
 	@Override
-	public String excluir(Hospedagem hos) {
+	public String excluir(Integer codHospedagem) {
 		String sql = "DELETE FROM Hospedagem WHERE codHospedagem=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, hos.getCodHospedagem());
+			pst.setInt(1, codHospedagem);
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Excluído com sucesso.";

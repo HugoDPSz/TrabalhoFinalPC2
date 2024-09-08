@@ -15,9 +15,9 @@ public class HospedagemController {
 		return dao.alterar(hos);
 	}
 	
-	public String excluir(Hospedagem hos) {
+	public String excluir(Integer codHospedagem) {
 		HospedagemDAOImp dao = new HospedagemDAOImp();
-		return dao.excluir(hos);
+		return dao.excluir(codHospedagem);
 	}
 	
 	public List<Hospedagem> listarTodos(Hospedagem hos){

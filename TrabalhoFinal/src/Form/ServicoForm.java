@@ -129,7 +129,7 @@ public class ServicoForm extends JFrame {
             int codServico = Integer.parseInt(codServicoField.getText().trim());
             Servico servico = new Servico();
             servico.setCodServico(codServico);
-            String result = servicoDAO.excluir(servico);
+            String result = servicoDAO.excluir(codServico);
             showMessage(result);
         } catch (Exception e) {
             showMessage("Erro ao excluir serviço: " + e.getMessage());

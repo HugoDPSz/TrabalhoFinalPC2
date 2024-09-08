@@ -8,7 +8,7 @@ public class ConnectionFactory {
 	public static Connection getConnection() {
 		String driver = "org.postgresql.Driver";
 		String user = "postgres";
-		String senha = "postgres";
+		String senha = "hugo";
 		String url = "jdbc:postgresql://localhost:5432/postgres";
 		Connection con = null;
 		try {

@@ -2,8 +2,6 @@ package Form;
 
 import model.Item;
 import persistencia.ItemDAOImp;
-import persistencia.ChaleItemDAOImp;
-import model.ChaleItem;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +16,6 @@ public class ItemsForm extends JFrame {
             new Object[]{"Nome do Item", "Descrição"}, 0);
     private JTable table;
     private final ItemDAOImp itemDAO = new ItemDAOImp();
-    private final ChaleItemDAOImp chaleItemDAO = new ChaleItemDAOImp();
 
     // Campos de entrada para nome e descrição do item
     private JTextField nomeItemField;
@@ -54,8 +51,16 @@ public class ItemsForm extends JFrame {
 
         // Painel de Botões
         JPanel buttonPanel = new JPanel();
+        JButton addItemButton = new JButton("Adicionar Item");
         JButton listItemsButton = new JButton("Listar Itens Disponíveis");
         JButton deleteButton = new JButton("Excluir Item");
+
+        addItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addItem();
+            }
+        });
 
         listItemsButton.addActionListener(new ActionListener() {
             @Override
@@ -71,16 +76,40 @@ public class ItemsForm extends JFrame {
             }
         });
 
+        buttonPanel.add(addItemButton);
         buttonPanel.add(listItemsButton);
         buttonPanel.add(deleteButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    private void addItem() {
+        String nomeItem = nomeItemField.getText();
+        String descricaoItem = descricaoItemArea.getText();
+
+        if (nomeItem.isEmpty() || descricaoItem.isEmpty()) {
+            showMessage("Preencha todos os campos.");
+            return;
+        }
+
+        Item item = new Item();
+        item.setNomeItem(nomeItem);
+        item.setDescricaoItem(descricaoItem);
+
+        try {
+            String result = itemDAO.inserir(item);
+            showMessage(result);
+            listAvailableItems();
+        } catch (Exception e) {
+            showMessage("Erro: " + e.getMessage());
+            showMessage("Erro ao adicionar item.");
+        }
+    }
+
     private void listAvailableItems() {
         try {
             List<Item> items = itemDAO.listarTodos();
-            tableModel.setRowCount(0); // Limpa a tabela antes de adicionar os novos dados
+            tableModel.setRowCount(0);
             if (items != null) {
                 for (Item item : items) {
                     tableModel.addRow(new Object[]{item.getNomeItem(), item.getDescricaoItem()});
@@ -100,7 +129,7 @@ public class ItemsForm extends JFrame {
                 try {
                     String result = itemDAO.excluir(itemName);
                     if ("Sucesso".equals(result)) {
-                        listAvailableItems(); // Atualiza a lista de itens
+                        listAvailableItems();
                         showMessage("Deletado.");
                     } else {
                         showMessage("Erro ao deletar");

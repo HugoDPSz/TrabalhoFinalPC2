@@ -41,11 +41,11 @@ public class ServicoDAOImp implements ServicoDAO {
     }
 
     @Override
-    public String excluir(Servico servico) {
+    public String excluir(Integer codServico) {
         String sql = "DELETE FROM Servico WHERE codServico = ?";
         try (Connection con = ConnectionFactory.getConnection();
              PreparedStatement pst = con.prepareStatement(sql)) {
-            pst.setInt(1, servico.getCodServico());
+            pst.setInt(1, codServico);
             int res = pst.executeUpdate();
             return res > 0 ? "Excluído com sucesso." : "Erro ao excluir.";
         } catch (SQLException e) {

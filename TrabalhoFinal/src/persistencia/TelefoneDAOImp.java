@@ -55,7 +55,7 @@ public class TelefoneDAOImp implements TelefoneDAO {
         try {
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, telefone);
-
+            pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Erro ao excluir telefone: " + e.getMessage());
         } finally {

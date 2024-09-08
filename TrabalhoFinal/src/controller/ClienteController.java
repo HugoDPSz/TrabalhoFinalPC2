@@ -16,9 +16,9 @@ public class ClienteController {
         return dao.alterar(cliente);
     }
 
-    public String excluir(Cliente cliente) {
+    public String excluir(Integer codCliente) {
         ClienteDAOImp dao = new ClienteDAOImp();
-        return dao.excluir(cliente);
+        return dao.excluir(codCliente);
     }
 
     public List<Cliente> listarTodos() {

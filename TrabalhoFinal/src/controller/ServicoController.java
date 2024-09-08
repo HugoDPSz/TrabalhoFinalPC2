@@ -20,8 +20,8 @@ public class ServicoController {
         return servicoDAO.alterar(servico);
     }
 
-    public String excluir(Servico servico) {
-        return servicoDAO.excluir(servico);
+    public String excluir(Integer codServico) {
+        return servicoDAO.excluir(codServico);
     }
 
     public List<Servico> listarTodos() {

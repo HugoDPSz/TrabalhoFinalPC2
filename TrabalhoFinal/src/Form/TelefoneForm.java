@@ -91,7 +91,7 @@ public class TelefoneForm extends JFrame {
             tel.setTipoTelefone(tipoTelefone);
             telefoneDAO.inserir(tel);
             showMessage("Telefone adicionado com sucesso.");
-            listTelefones(); // Atualiza a lista após a adição
+            listTelefones();
         }
     }
 
@@ -107,7 +107,7 @@ public class TelefoneForm extends JFrame {
                 tel.setCodCliente(codCliente);
                 telefoneDAO.alterar(tel);
                 showMessage("Telefone alterado com sucesso.");
-                listTelefones(); // Atualiza a lista após a alteração
+                listTelefones();
             }
         } else {
             showMessage("Telefone não encontrado.");
@@ -120,7 +120,7 @@ public class TelefoneForm extends JFrame {
         if (telefone != null) {
             telefoneDAO.excluir(telefone);
             showMessage("Telefone excluído com sucesso.");
-            listTelefones(); // Atualiza a lista após a exclusão
+            listTelefones();
         }
     }
 
